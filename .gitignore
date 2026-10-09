@@ -30,3 +30,22 @@
 *.exe
 *.out
 *.app
+
+# C#
+[Bb]in/
+[Oo]bj/
+
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+*.nupkg
+**/packages/
+!**/packages/repositories.config
+project.lock.json
+project.fragment.lock.json
+
+*.log
+*.crash
