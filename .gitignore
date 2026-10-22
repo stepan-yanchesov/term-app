@@ -49,3 +49,15 @@ project.fragment.lock.json
 
 *.log
 *.crash
+
+.vs/
+x64/
+Debug/
+Release/
+*.obj
+*.pdb
+*.log
+SeaportSim/SeaportSim/SeaportSim.vcxproj.filters
+SeaportSim/SeaportSim/SeaportSim.vcxproj
+SeaportSim/SeaportSim/SeaportSim.cpp
+SeaportSim/SeaportSim.slnx

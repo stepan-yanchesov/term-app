@@ -14,14 +14,14 @@ namespace seaport
 
     Dock::~Dock()
     {
-        std::cout << "[Ð”ÐµÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€] ÐŸÑ€Ð¸Ñ‡Ð°Ð» â„–" << m_dockNumber << " ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½.\n";
+        std::cout << "[Äåñòðóêòîð] Ïðè÷àë ¹" << m_dockNumber << " óíè÷òîæåí.\n";
     }
 
     std::string Dock::GetOccupiedShipName() const
     {
         if (m_currentShip == nullptr)
         {
-            return "Ð¡Ð²Ð¾Ð±Ð¾Ð´Ð½Ð¾";
+            return "Ñâîáîäíî";
         }
         return std::string(m_currentShip->GetName());
     }
@@ -30,23 +30,23 @@ namespace seaport
     {
         if (m_currentShip != nullptr)
         {
-            std::cout << "[ÐžÑ‚ÐºÐ°Ð·] ÐŸÑ€Ð¸Ñ‡Ð°Ð» â„–" << m_dockNumber << " ÑƒÐ¶Ðµ Ð·Ð°Ð½ÑÑ‚ Ð´Ñ€ÑƒÐ³Ð¸Ð¼ ÑÑƒÐ´Ð½Ð¾Ð¼!\n";
+            std::cout << "[Îòêàç] Ïðè÷àë ¹" << m_dockNumber << " óæå çàíÿò äðóãèì ñóäíîì!\n";
             return;
         }
 
         m_currentShip = ship;
-        std::cout << "[Ð£ÑÐ¿ÐµÑ…] ÐšÐ¾Ñ€Ð°Ð±Ð»ÑŒ \"" << ship->GetName() << "\" Ð¿Ñ€Ð¸ÑˆÐ²Ð°Ñ€Ñ‚Ð¾Ð²Ð°Ð½ Ðº Ð¿Ñ€Ð¸Ñ‡Ð°Ð»Ñƒ â„–" << m_dockNumber << ".\n";
+        std::cout << "[Óñïåõ] Êîðàáëü \"" << ship->GetName() << "\" ïðèøâàðòîâàí ê ïðè÷àëó ¹" << m_dockNumber << ".\n";
     }
 
     void Dock::ReleaseShip()
     {
         if (m_currentShip == nullptr)
         {
-            std::cout << "[ÐŸÑ€ÐµÐ´ÑƒÐ¿Ñ€ÐµÐ¶Ð´ÐµÐ½Ð¸Ðµ] ÐŸÑ€Ð¸Ñ‡Ð°Ð» â„–" << m_dockNumber << " Ð¸ Ñ‚Ð°Ðº Ð¿ÑƒÑÑ‚.\n";
+            std::cout << "[Ïðåäóïðåæäåíèå] Ïðè÷àë ¹" << m_dockNumber << " è òàê ïóñò.\n";
             return;
         }
 
-        std::cout << "[Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ] ÐšÐ¾Ñ€Ð°Ð±Ð»ÑŒ \"" << m_currentShip->GetName() << "\" Ð¾Ñ‚Ð¾ÑˆÐµÐ» Ð¾Ñ‚ Ð¿Ñ€Ð¸Ñ‡Ð°Ð»Ð° â„–" << m_dockNumber << ".\n";
+        std::cout << "[Äåéñòâèå] Êîðàáëü \"" << m_currentShip->GetName() << "\" îòîøåë îò ïðè÷àëà ¹" << m_dockNumber << ".\n";
         m_currentShip = nullptr;
     }
 

@@ -18,24 +18,24 @@ namespace seaport
 
     Port::~Port()
     {
-        std::cout << "[Ð”ÐµÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€] ÐŸÐ¾Ñ€Ñ‚ \"" << m_portName << "\" Ð¿Ñ€ÐµÐºÑ€Ð°Ñ‚Ð¸Ð» Ñ€Ð°Ð±Ð¾Ñ‚Ñƒ.\n";
+        std::cout << "[Äåñòðóêòîð] Ïîðò \"" << m_portName << "\" ïðåêðàòèë ðàáîòó.\n";
     }
 
     void Port::OpenPort()
     {
-        std::cout << "[Ð”ÐµÐ¹ÑÑ‚Ð²Ð¸Ðµ] ÐœÐ¾Ñ€ÑÐºÐ¾Ð¹ Ð¿Ð¾Ñ€Ñ‚ \"" << m_portName << "\" Ð¾Ñ„Ð¸Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð¾ Ð¾Ñ‚ÐºÑ€Ñ‹Ð» Ð½Ð°Ð²Ð¸Ð³Ð°Ñ†Ð¸ÑŽ.\n";
+        std::cout << "[Äåéñòâèå] Ìîðñêîé ïîðò \"" << m_portName << "\" îôèöèàëüíî îòêðûë íàâèãàöèþ.\n";
     }
 
     void Port::InspectPort() const
     {
-        std::cout << "[Ð¡Ñ‚Ð°Ñ‚ÑƒÑ ÐŸÐ¾Ñ€Ñ‚Ð°] ÐŸÐ¾Ñ€Ñ‚: " << m_portName
-            << " | ÐŸÑ€Ð¸Ñ‡Ð°Ð» â„–" << m_mainDock.GetDockNumber()
-            << " | Ð¡Ñ‚Ð°Ñ‚ÑƒÑ: " << m_mainDock.GetOccupiedShipName() << "\n";
+        std::cout << "[Ñòàòóñ Ïîðòà] Ïîðò: " << m_portName
+            << " | Ïðè÷àë ¹" << m_mainDock.GetDockNumber()
+            << " | Ñòàòóñ: " << m_mainDock.GetOccupiedShipName() << "\n";
     }
 
     void Port::DockShipInPort(Ship* ship)
     {
-        std::cout << "[Ð—Ð°Ð¿Ñ€Ð¾Ñ] ÐŸÐ¾Ñ€Ñ‚ \"" << m_portName << "\" Ð¿ÐµÑ€ÐµÐ½Ð°Ð¿Ñ€Ð°Ð²Ð»ÑÐµÑ‚ ÐºÐ¾Ñ€Ð°Ð±Ð»ÑŒ Ð½Ð° Ð¿Ñ€Ð¸Ñ‡Ð°Ð»...\n";
+        std::cout << "[Çàïðîñ] Ïîðò \"" << m_portName << "\" ïåðåíàïðàâëÿåò êîðàáëü íà ïðè÷àë...\n";
         m_mainDock.MoorShip(ship);
     }
 
