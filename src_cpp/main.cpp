@@ -5,7 +5,7 @@
 
 void DisplayShipInfo(const seaport::Ship& ship)
 {
-    std::cout << ship.GetName() << " | " << ship.GetCargoType() << "\n";
+    std::cout << ship.GetName() << " | " << ship.GetCargoType() << " | " << ship.GetCargoWeight() << " ò.\n";
 }
 
 int main()
@@ -13,49 +13,49 @@ int main()
     std::system("chcp 1251 > nul");
     std::setlocale(LC_ALL, "Russian");
 
-    std::cout << "=== Ð¡Ñ‚Ð°Ñ€Ñ‚ Ð´ÐµÐ¼Ð¾-Ð²ÐµÑ€ÑÐ¸Ð¸ ===\n\n";
+    std::cout << "=== Ñòàðò äåìî-âåðñèè ===\n\n";
 
-    std::cout << "--- Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ ÐºÐ¾Ñ€Ð°Ð±Ð»ÐµÐ¹ ---\n";
-    seaport::Ship* dynamicShip = new seaport::Ship("Ð¢Ð¸Ñ‚Ð°Ð½", "ÐÐµÑ„Ñ‚ÑŒ", 5000.0);
+    std::cout << "--- Ñîçäàíèå êîðàáëåé ---\n";
+    seaport::Ship* dynamicShip = new seaport::Ship("Òèòàí", "Íåôòü", 5000.0);
 
-    seaport::Ship stackShip("ÐÐ²Ñ€Ð¾Ñ€Ð°", "ÐšÐ¾Ð½Ñ‚ÐµÐ¹Ð½ÐµÑ€Ñ‹", 1200.0);
+    seaport::Ship stackShip("Àâðîðà", "Êîíòåéíåðû", 1200.0);
     std::cout << "\n";
 
     DisplayShipInfo(stackShip);
     std::cout << "\n";
 
     {
-        std::cout << "--- Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ ÐŸÐ¾Ñ€Ñ‚Ð° (ÐšÐ¾Ð¼Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ) ---\n";
-        seaport::Port myPort("Ð®Ð¶Ð½Ñ‹Ð¹ ÐŸÐ¾Ñ€Ñ‚", 1, 15.5);
+        std::cout << "--- Ñîçäàíèå Ïîðòà (Êîìïîçèöèÿ) ---\n";
+        seaport::Port myPort("Þæíûé Ïîðò", 1, 15.5);
         myPort.OpenPort();
         myPort.InspectPort();
         std::cout << "\n";
 
-        std::cout << "--- Ð”ÐµÐ¼Ð¾Ð½ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð°Ð³Ñ€ÐµÐ³Ð°Ñ†Ð¸Ð¸ ---\n";
+        std::cout << "--- Äåìîíñòðàöèÿ àãðåãàöèè ---\n";
         myPort.DockShipInPort(dynamicShip);
         myPort.InspectPort();
         std::cout << "\n";
 
-        std::cout << "--- ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð²Ð°Ð»Ð¸Ð´Ð°Ñ†Ð¸Ð¸ ---\n";
+        std::cout << "--- Ïðîâåðêà âàëèäàöèè ---\n";
         dynamicShip->UnloadCargo(6000.0);
         dynamicShip->UnloadCargo(2000.0);
-        std::cout << "Ð¢ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð²ÐµÑ Ð³Ñ€ÑƒÐ·Ð° Ð½Ð° \"" << dynamicShip->GetName()
-            << "\": " << dynamicShip->GetCargoWeight() << " Ñ‚.\n\n";
+        std::cout << "Òåêóùèé âåñ ãðóçà íà \"" << dynamicShip->GetName()
+            << "\": " << dynamicShip->GetCargoWeight() << " ò.\n\n";
 
-        std::cout << "--- ÐšÐ¾Ñ€Ð°Ð±Ð»ÑŒ Ð¿Ð¾ÐºÐ¸Ð´Ð°ÐµÑ‚ Ð¿Ñ€Ð¸Ñ‡Ð°Ð» ---\n";
+        std::cout << "--- Êîðàáëü ïîêèäàåò ïðè÷àë ---\n";
         myPort.FreePortDock();
         myPort.InspectPort();
         std::cout << "\n";
 
-        std::cout << "--- Ð£Ð½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½Ð¸Ðµ ÐŸÐ¾Ñ€Ñ‚Ð° ---\n";
+        std::cout << "--- Óíè÷òîæåíèå Ïîðòà ---\n";
     }
 
-    std::cout << "\n--- ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ²ÑÐ·Ð¸ Ð¿Ð¾ÑÐ»Ðµ ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½Ð¸Ñ Ð¿Ð¾Ñ€Ñ‚Ð° (ÐÐ³Ñ€ÐµÐ³Ð°Ñ†Ð¸Ñ) ---\n";
-    std::cout << "ÐšÐ¾Ñ€Ð°Ð±Ð»ÑŒ \"" << dynamicShip->GetName() << "\" Ð²ÑÑ‘ ÐµÑ‰Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚ Ð² Ð°ÐºÐ²Ð°Ñ‚Ð¾Ñ€Ð¸Ð¸.\n";
+    std::cout << "\n--- Ïðîâåðêà ñâÿçè ïîñëå óíè÷òîæåíèÿ ïîðòà (Àãðåãàöèÿ) ---\n";
+    std::cout << "Êîðàáëü \"" << dynamicShip->GetName() << "\" âñ¸ åùå ñóùåñòâóåò â àêâàòîðèè.\n";
     dynamicShip->Refuel();
     std::cout << "\n";
 
-    std::cout << "--- Ð£Ð´Ð°Ð»ÐµÐ½Ð¸Ðµ Ð´Ð¸Ð½Ð°Ð¼Ð¸Ñ‡ÐµÑÐºÐ¾Ð³Ð¾ ÐºÐ¾Ñ€Ð°Ð±Ð»Ñ ---\n";
+    std::cout << "--- Óäàëåíèå äèíàìè÷åñêîãî êîðàáëÿ ---\n";
     delete dynamicShip;
     dynamicShip = nullptr;
     std::cout << "\n";
@@ -65,8 +65,8 @@ int main()
     std::cout << "\n";
 
     seaport::Ship** pointerArray = new seaport::Ship * [2];
-    pointerArray[0] = new seaport::Ship("ÐœÑƒÑÑÐ¾Ð½", "Ð£Ð³Ð¾Ð»ÑŒ", 3000.0);
-    pointerArray[1] = new seaport::Ship("Ð¨ÐºÐ²Ð°Ð»", "Ð—ÐµÑ€Ð½Ð¾", 2500.0);
+    pointerArray[0] = new seaport::Ship("Ìóññîí", "Óãîëü", 3000.0);
+    pointerArray[1] = new seaport::Ship("Øêâàë", "Çåðíî", 2500.0);
     std::cout << "\n";
 
     for (int i = 0; i < 2; ++i)
@@ -76,6 +76,6 @@ int main()
     delete[] pointerArray;
     std::cout << "\n";
 
-    std::cout << "--- Ð—Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ main() ---\n";
+    std::cout << "--- Çàâåðøåíèå ðàáîòû main() ---\n";
     return 0;
 }
