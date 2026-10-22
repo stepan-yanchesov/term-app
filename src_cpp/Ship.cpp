@@ -3,9 +3,10 @@
 
 namespace seaport
 {
-	Ship::Ship() = default;
 
-	Ship::Ship(std::string_view name, std::string_view cargoType, double cargoWeight)
+    Ship::Ship() = default;
+
+    Ship::Ship(const std::string& name, const std::string& cargoType, double cargoWeight)
         : m_name{ name }
         , m_cargoType{ cargoType }
         , m_cargoWeight{ cargoWeight }
