@@ -14,7 +14,7 @@ namespace Seaport
             _dockNumber = dockNumber;
             _maxdepth = maxdepth;
         }
-        public int DockNubmer => _dockNumber;
+        public int DockNumber => _dockNumber;
         public double Maxdepth => _maxdepth;
         public bool IsOccupied => _currentShip != null;
         public string OccupiedShipName()
