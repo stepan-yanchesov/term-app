@@ -44,5 +44,9 @@ namespace Seaport
         {
             Console.WriteLine($"[Успех] Корабль {_name} успешно заправлен топливом.\n");
         }
+        public override string ToString()
+        {
+            return $"Корабль \"{_name}\" (Груз: {_cargoType}, Вес: {_cargoWeight} т.)";
+        }
     }
 }
