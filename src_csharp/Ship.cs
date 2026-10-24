@@ -27,8 +27,8 @@ namespace Seaport
                 _cargoWeight = cargoWeight;
             }
         }
-        public string NAME => _name;
-        public string CARGO_TYPE => _cargoType;
+        public string Name => _name;
+        public string CargoType => _cargoType;
         public double CargoWeight => _cargoWeight;
         public void UnloadCargo(double amount)
         {

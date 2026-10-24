@@ -6,26 +6,29 @@ namespace Seaport
     public class Dock
     {
         private int _dockNumber = 0;
-        private double _maxdepth = 0.0;
+        private double _maxDepth = 0.0;
         private Ship? _currentShip = null;
         public Dock() { }
-        public Dock(int  dockNumber, double maxdepth)
+        public Dock(int  dockNumber, double maxDepth)
         {
             _dockNumber = dockNumber;
-            _maxdepth = maxdepth;
+            _maxDepth = maxDepth;
         }
         public int DockNumber => _dockNumber;
-        public double Maxdepth => _maxdepth;
+        public double Maxdepth => _maxDepth;
         public bool IsOccupied => _currentShip != null;
-        public string OccupiedShipName()
+        public string OccupiedShipName
         {
-            if (_currentShip == null)
+            get
             {
-                return "Свободно.\n";
-            }
-            else
-            {
-                return _currentShip.NAME;
+                if (_currentShip == null)
+                {
+                    return "Свободно.";
+                }
+                else
+                {
+                    return _currentShip.Name;
+                }
             }
         }
         public void MoorShip(Ship ship)
@@ -36,7 +39,7 @@ namespace Seaport
                 return;
             }
             _currentShip = ship;
-            Console.WriteLine($"[Успех] Корабль {_currentShip.NAME} пришвартован к порту №{_dockNumber}\n");
+            Console.WriteLine($"[Успех] Корабль {_currentShip.Name} пришвартован к порту №{_dockNumber}\n");
         }
         public void ReleaseShip()
         {
@@ -45,11 +48,12 @@ namespace Seaport
                 Console.WriteLine($"[Предупреждение] Причал №{_dockNumber} не содержит корабля.\n");
                 return;
             }
-            Console.WriteLine($"Корабль {_currentShip.NAME} отошёл от причала №{_dockNumber}\n");
+            Console.WriteLine($"Корабль {_currentShip.Name} отошёл от причала №{_dockNumber}\n");
+            _currentShip = null;
         }
         public override string ToString()
         {
-            return $"Причал №{_dockNumber}, максимальная глубина - {_maxdepth}\n";
+            return $"Причал №{_dockNumber}, максимальная глубина - {_maxDepth}\n";
         }
     }
 }
