@@ -1,4 +1,3 @@
-
 namespace Seaport
 {
     public class Ship
@@ -46,7 +45,7 @@ namespace Seaport
         }
         public override string ToString()
         {
-            return $"Корабль \"{_name}\" (Груз: {_cargoType}, Вес: {_cargoWeight} т.)";
+            return $"Корабль \"{_name}\" (Груз: {_cargoType}, Вес: {_cargoWeight} т.)\n";
         }
     }
 }
