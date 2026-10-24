@@ -27,6 +27,10 @@ namespace Seaport
                 _cargoWeight = cargoWeight;
             }
         }
+        ~Ship()
+        {
+            Console.WriteLine($"Корабль '{_name}' удален из памяти сборщиком мусора.");
+        }
         public string Name => _name;
         public string CargoType => _cargoType;
         public double CargoWeight => _cargoWeight;
@@ -37,11 +41,11 @@ namespace Seaport
                 return;
             }
             _cargoWeight -= amount;
-            Console.WriteLine($"[Успех] С корабля {_name} выгружено {amount} т.\n");
+            Console.WriteLine($"[Успех] С корабля '{_name}' выгружено {amount} т.\n");
         }
         public void Refuel()
         {
-            Console.WriteLine($"[Успех] Корабль {_name} успешно заправлен топливом.\n");
+            Console.WriteLine($"[Успех] Корабль '{_name}' успешно заправлен топливом.\n");
         }
         public override string ToString()
         {

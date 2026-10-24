@@ -16,11 +16,11 @@ namespace Seaport
         public string PortName => _portName;
         public void OpenPort()
         {
-            Console.WriteLine($"[Действие] Порт {_portName} открыл навигацию.\n");
+            Console.WriteLine($"[Действие] Порт '{_portName}' открыл навигацию.\n");
         }
         public void DockShipInPort(Ship ship)
         {
-            Console.WriteLine($"Порт {_portName} перенаправляет корабль на причал.\n");
+            Console.WriteLine($"Порт '{_portName}' перенаправляет корабль на причал.\n");
             _mainDock.MoorShip(ship);
         }
         public void FreePortDock()
@@ -29,7 +29,7 @@ namespace Seaport
         }
         public override string ToString()
         {
-            return $"Порт - {_portName}, причал №{_mainDock.DockNumber}, статус: {_mainDock.OccupiedShipName}\n";
+            return $"Порт - '{_portName}', причал №{_mainDock.DockNumber}, статус: {_mainDock.OccupiedShipName}\n";
         }
     }
 }

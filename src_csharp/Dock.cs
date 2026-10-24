@@ -39,7 +39,7 @@ namespace Seaport
                 return;
             }
             _currentShip = ship;
-            Console.WriteLine($"[Успех] Корабль {_currentShip.Name} пришвартован к порту №{_dockNumber}\n");
+            Console.WriteLine($"[Успех] Корабль '{_currentShip.Name}' пришвартован к причалу №{_dockNumber}\n");
         }
         public void ReleaseShip()
         {
@@ -48,7 +48,7 @@ namespace Seaport
                 Console.WriteLine($"[Предупреждение] Причал №{_dockNumber} не содержит корабля.\n");
                 return;
             }
-            Console.WriteLine($"Корабль {_currentShip.Name} отошёл от причала №{_dockNumber}\n");
+            Console.WriteLine($"Корабль '{_currentShip.Name}' отошёл от причала №{_dockNumber}\n");
             _currentShip = null;
         }
         public override string ToString()
