@@ -2,6 +2,7 @@
 #include "ship.h"
 #include <iostream>
 #include <cstdlib>
+#include <memory>
 
 void DisplayShipInfo(const seaport::Ship& ship)
 {
@@ -16,12 +17,12 @@ int main()
     std::cout << "=== Старт демо-версии ===\n\n";
 
     std::cout << "--- Создание кораблей ---\n";
-    seaport::Ship* dynamicShip = new seaport::Ship("Титан", "Нефть", 5000.0);
+    std::shared_ptr<seaport::Ship> dynamicShip = std::make_shared<seaport::Ship>("Титан", "Нефть", 5000.0);
 
     seaport::Ship stackShip("Аврора", "Контейнеры", 1200.0);
     std::cout << "\n";
 
-    DisplayShipInfo(stackShip);
+    DisplayShipInfo(*dynamicShip);
     std::cout << "\n";
 
     {
@@ -33,6 +34,7 @@ int main()
 
         std::cout << "--- Демонстрация агрегации ---\n";
         myPort.DockShipInPort(dynamicShip);
+        std::cout << "Счетчик владельцев после швартовки: " << dynamicShip.use_count() << "\n";
         myPort.InspectPort();
         std::cout << "\n";
 
@@ -51,29 +53,26 @@ int main()
     }
 
     std::cout << "\n--- Проверка связи после уничтожения порта (Агрегация) ---\n";
-    std::cout << "Корабль \"" << dynamicShip->GetName() << "\" всё еще существует в акватории.\n";
+    std::cout << "Корабль \"" << dynamicShip->GetName() << "\" всё еще существует в акватории. Владельцев: " << dynamicShip.use_count() << "\n";
     dynamicShip->Refuel();
     std::cout << "\n";
 
-    std::cout << "--- Удаление динамического корабля ---\n";
-    delete dynamicShip;
-    dynamicShip = nullptr;
+    std::cout << "--- unique_ptr ---\n";
+    std::unique_ptr<seaport::Ship[]> shipArray = std::make_unique<seaport::Ship[]>(2);
+    std::cout << "Массив из 2-х кораблей создан на стеке через unique_ptr.\n";
     std::cout << "\n";
 
-    seaport::Ship* shipArray = new seaport::Ship[2];
-    delete[] shipArray;
-    std::cout << "\n";
+    auto pointerArray = std::make_unique<std::shared_ptr<seaport::Ship>[]>(2);
+    std::shared_ptr<seaport::Ship> mosoon = std::make_shared<seaport::Ship>("Муссон", "Уголь", 3000.0);
+    std::cout << "Владельцев Муссона до переноса: " << mosoon.use_count() << "\n";
+    pointerArray[0] = std::move(mosoon);
 
-    seaport::Ship** pointerArray = new seaport::Ship * [2];
-    pointerArray[0] = new seaport::Ship("Муссон", "Уголь", 3000.0);
-    pointerArray[1] = new seaport::Ship("Шквал", "Зерно", 2500.0);
-    std::cout << "\n";
-
-    for (int i = 0; i < 2; ++i)
-    {
-        delete pointerArray[i];
+    if (!mosoon) {
+        std::cout << "Исходный указатель mosoon теперь пуст\n";
     }
-    delete[] pointerArray;
+    std::cout << "Владельцев Муссона в массиве: " << pointerArray[0].use_count() << "\n";
+
+    pointerArray[1] = std::make_shared<seaport::Ship>("Шквал", "Зерно", 2500.0);
     std::cout << "\n";
 
     std::cout << "--- Завершение работы main() ---\n";
