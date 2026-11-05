@@ -2,6 +2,7 @@
 
 #include "Ship.h"
 #include <string>
+#include <memory>
 
 namespace seaport
 {
@@ -11,7 +12,7 @@ namespace seaport
     private:
         int m_dockNumber{ 0 };
         double m_maxDepth{ 0.0 };
-        Ship* m_currentShip{ nullptr };
+        std::weak_ptr<Ship> m_currentShip{};
 
     public:
         Dock();
@@ -28,14 +29,12 @@ namespace seaport
             return m_maxDepth;
         }
 
-        [[nodiscard]] bool IsOccupied() const
-        {
-            return m_currentShip != nullptr;
-        }
+        [[nodiscard]] bool IsOccupied() const;
+
 
         [[nodiscard]] std::string GetOccupiedShipName() const;
 
-        void MoorShip(Ship* ship);
+        void MoorShip(std::shared_ptr<Ship> ship);
         void ReleaseShip();
     };
 }
