@@ -3,6 +3,7 @@
 #include "dock.h"
 #include "ship.h"
 #include <string>
+#include <memory>
 
 namespace seaport
 {
@@ -28,7 +29,7 @@ namespace seaport
         void OpenPort();
         void InspectPort() const;
 
-        void DockShipInPort(Ship* ship);
+        void DockShipInPort(std::shared_ptr<Ship> ship);
         void FreePortDock();
     };
 

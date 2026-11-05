@@ -33,7 +33,7 @@ namespace seaport
             << " | Статус: " << m_mainDock.GetOccupiedShipName() << "\n";
     }
 
-    void Port::DockShipInPort(Ship* ship)
+    void Port::DockShipInPort(std::shared_ptr<Ship> ship)
     {
         std::cout << "[Запрос] Порт \"" << m_portName << "\" перенаправляет корабль на причал...\n";
         m_mainDock.MoorShip(ship);
