@@ -17,22 +17,29 @@ namespace seaport
         std::cout << "[Деструктор] Причал №" << m_dockNumber << " уничтожен.\n";
     }
 
-    std::string Dock::GetOccupiedShipName() const
+    bool Dock::IsOccupied() const
     {
-        if (m_currentShip == nullptr)
-        {
-            return "Свободно";
-        }
-        return std::string(m_currentShip->GetName());
+        return !m_currentShip.expired();
     }
 
-    void Dock::MoorShip(Ship* ship)
+    std::string Dock::GetOccupiedShipName() const
     {
-        if (m_currentShip != nullptr)
+        if (auto shipSp = m_currentShip.lock())
+        {
+            return shipSp->GetName();
+        }
+        return "Свободно";
+    }
+
+    void Dock::MoorShip(std::shared_ptr<Ship> ship)
+    {
+        if (IsOccupied())
         {
             std::cout << "[Отказ] Причал №" << m_dockNumber << " уже занят другим судном!\n";
             return;
         }
+
+        if (!ship) return;
 
         m_currentShip = ship;
         std::cout << "[Успех] Корабль \"" << ship->GetName() << "\" пришвартован к причалу №" << m_dockNumber << ".\n";
@@ -40,14 +47,17 @@ namespace seaport
 
     void Dock::ReleaseShip()
     {
-        if (m_currentShip == nullptr)
+        if (!IsOccupied())
         {
             std::cout << "[Предупреждение] Причал №" << m_dockNumber << " и так пуст.\n";
             return;
         }
 
-        std::cout << "[Действие] Корабль \"" << m_currentShip->GetName() << "\" отошел от причала №" << m_dockNumber << ".\n";
-        m_currentShip = nullptr;
+        if (auto shipSp = m_currentShip.lock())
+        {
+            std::cout << "[Действие] Корабль \"" << shipSp->GetName() << "\" отошел от причала №" << m_dockNumber << ".\n";
+        }
+        m_currentShip.reset();
     }
 
 }
