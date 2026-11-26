@@ -1,4 +1,5 @@
-#include "dock.h"
+#include "Dock.hpp"
+#include "BaseShip.hpp"
 #include <iostream>
 
 namespace seaport
@@ -31,7 +32,7 @@ namespace seaport
         return "Свободно";
     }
 
-    void Dock::MoorShip(std::shared_ptr<Ship> ship)
+    void Dock::MoorShip(std::shared_ptr<BaseShip> ship)
     {
         if (IsOccupied())
         {

@@ -1,18 +1,18 @@
 #pragma once
 
-#include "Ship.h"
 #include <string>
 #include <memory>
 
 namespace seaport
 {
+    class BaseShip;
 
     class Dock
     {
     private:
         int m_dockNumber{ 0 };
         double m_maxDepth{ 0.0 };
-        std::weak_ptr<Ship> m_currentShip{};
+        std::weak_ptr<BaseShip> m_currentShip{};
 
     public:
         Dock();
@@ -34,7 +34,7 @@ namespace seaport
 
         [[nodiscard]] std::string GetOccupiedShipName() const;
 
-        void MoorShip(std::shared_ptr<Ship> ship);
+        void MoorShip(std::shared_ptr<BaseShip> ship);
         void ReleaseShip();
     };
 }
