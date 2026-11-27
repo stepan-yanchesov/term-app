@@ -13,15 +13,13 @@ namespace seaport
         int m_currentContainers;
         double m_standardContainerWeight;
 
-    protected:
-        ContainerShip(const ContainerShip& other);
-        ContainerShip(const ContainerShip& other, ShallowCopyTag);
-
     public:
         ContainerShip();
         ContainerShip(const std::string& name, double displacement, int maxContainers,
             int currentContainers, std::shared_ptr<Port> port,
             double standardContainerWeight = DEFAULT_CONTAINER_WEIGHT);
+        ContainerShip(const ContainerShip& other);
+        ContainerShip(const ContainerShip& other, ShallowCopyTag);
         ContainerShip(ContainerShip&& other) noexcept;
 
         ~ContainerShip() override;

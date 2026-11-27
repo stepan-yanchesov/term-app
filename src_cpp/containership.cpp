@@ -184,12 +184,12 @@ namespace seaport
 
     std::unique_ptr<BaseShip> ContainerShip::Clone() const
     {
-        return std::unique_ptr<ContainerShip>(new ContainerShip(*this));
+        return std::make_unique<ContainerShip>(*this);
     }
 
     std::unique_ptr<BaseShip> ContainerShip::ShallowClone() const
     {
-        return std::unique_ptr<ContainerShip>(new ContainerShip(*this, ShallowCopyTag{}));
+        return std::make_unique<ContainerShip>(*this, ShallowCopyTag{});
     }
 
     std::string ContainerShip::Describe() const

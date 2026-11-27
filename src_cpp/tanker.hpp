@@ -10,15 +10,13 @@ namespace seaport
         double m_tankCapacity;
         bool m_hasDoubleHull;
 
-    protected:
-        Tanker(const Tanker& other);
-        Tanker(const Tanker& other, ShallowCopyTag);
-
     public:
         Tanker();
         Tanker(const std::string& name, double displacement, double cargoWeight,
             const std::string& liquidType, double tankCapacity, bool hasDoubleHull,
             std::shared_ptr<Port> port);
+        Tanker(const Tanker& other);
+        Tanker(const Tanker& other, ShallowCopyTag);
         Tanker(Tanker&& other) noexcept;
 
         ~Tanker() override;

@@ -144,12 +144,12 @@ namespace seaport
 
     std::unique_ptr<BaseShip> Tanker::Clone() const
     {
-        return std::unique_ptr<Tanker>(new Tanker(*this));
+        return std::make_unique<Tanker>(*this);
     }
 
     std::unique_ptr<BaseShip> Tanker::ShallowClone() const
     {
-        return std::unique_ptr<Tanker>(new Tanker(*this, ShallowCopyTag{}));
+        return std::make_unique<Tanker>(*this, ShallowCopyTag{});
     }
 
     std::string Tanker::Describe() const
