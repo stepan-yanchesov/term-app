@@ -1,12 +1,12 @@
 #pragma once
 
-#include "dock.h"
-#include "ship.h"
+#include "Dock.hpp"
 #include <string>
 #include <memory>
 
 namespace seaport
 {
+    class BaseShip;
 
     class Port
     {
@@ -26,10 +26,16 @@ namespace seaport
             return m_portName;
         }
 
+        void SetPortName(std::string_view newName)
+        {
+            m_portName = newName;
+        }
+
         void OpenPort();
         void InspectPort() const;
+        void RegisterShip(const BaseShip& ship) const;
 
-        void DockShipInPort(std::shared_ptr<Ship> ship);
+        void DockShipInPort(std::shared_ptr<BaseShip> ship);
         void FreePortDock();
     };
 

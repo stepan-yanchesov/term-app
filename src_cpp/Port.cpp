@@ -1,4 +1,5 @@
-#include "port.h"
+#include "Port.hpp"
+#include "BaseShip.hpp"
 #include <iostream>
 
 namespace seaport
@@ -33,10 +34,16 @@ namespace seaport
             << " | Статус: " << m_mainDock.GetOccupiedShipName() << "\n";
     }
 
-    void Port::DockShipInPort(std::shared_ptr<Ship> ship)
+    void Port::RegisterShip(const BaseShip& ship) const
+    {
+        std::cout << "[Регистрация] Порт \"" << m_portName << "\" принял уведомление от судна: "
+            << ship.Describe() << "\n";
+    }
+
+    void Port::DockShipInPort(std::shared_ptr<BaseShip> ship)
     {
         std::cout << "[Запрос] Порт \"" << m_portName << "\" перенаправляет корабль на причал...\n";
-        m_mainDock.MoorShip(ship);
+        m_mainDock.MoorShip(std::move(ship));
     }
 
     void Port::FreePortDock()
